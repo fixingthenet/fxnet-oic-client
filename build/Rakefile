@@ -1,0 +1,28 @@
+tag=Time.now.strftime("%Y%m%d%H%M")
+repo="fxnet/"
+project="fxnet-oic-client"
+app_dir=File.expand_path(File.join(File.dirname(__FILE__),".."))
+
+require 'json'
+
+namespace :release do
+  desc "build"
+  task "build" do
+#    system("docker pull #{repo}#{project}:latest")
+#    system("docker build -t  #{repo}#{project}:latest --cache-from #{repo}#{project}:latest --pull #{app_dir}")
+    system("docker build -t  #{repo}#{project}:latest #{app_dir}")
+  end
+
+  desc "build and push to repository"
+  task "push" => "build" do
+    # latest
+    puts "pushing latest"
+    system("docker push #{repo}#{project}:latest")
+
+    # by time
+    puts "pushing #{tag}"
+    system("docker tag #{repo}#{project}:latest #{repo}#{project}:#{tag}")
+    system("docker push #{repo}#{project}:#{tag}")
+
+  end
+end
