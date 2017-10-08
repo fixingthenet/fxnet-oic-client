@@ -1,0 +1,17 @@
+<div>
+Got the call back:</br>
+
+<code>
+<%= params.inspect %>
+</code>
+</div>
+
+<div>
+The request.env['omniauth.auth'] now containes:</br>
+
+<code>
+<%= @env['omniauth.auth'] %>
+</code>
+</br>
+Just store the uid in your db. And the rest in your session (name, email, ...). Once the session times out ... repeat.
+</div>

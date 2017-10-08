@@ -27,5 +27,23 @@ module FxnetOicClient
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    
+    Rails.application.config.middleware.use OmniAuth::Builder do
+#     provider :developer unless Rails.env.production?
+      provider 'openid_connect', { 
+       # name: :my_provider,
+        scope: [:openid, :profile, :email],
+  response_type: :code,
+  discovery: true, 
+  #issuer: 
+  client_options: {
+    port: ENV["OIC_PORT"], # "80"
+    scheme: ENV["OIC_SCHEME"], #"http"
+    host: ENV["OIC_HOST"],
+    identifier: ENV["OIC_CLIENT_ID"],
+    secret: ENV["OIC_CLIENT_SECRET"],
+    redirect_uri: "#{ENV['OIC_CLIENT_HOST'] || 'localhost' }/auth/openidconnect/callback",
+  }}
+    end
   end
 end

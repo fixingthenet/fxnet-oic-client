@@ -43,4 +43,21 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+#  p config.omniauth
+#config.omniauth :openid_connect, {
+#  name: :my_provider,
+#  scope: [:openid, :profile, :email],
+#  response_type: :code,
+#  discovery: true, 
+#  #issuer: 
+#  client_options: {
+#    port: 80,
+#    scheme: "http",
+#    host: "dev-auth.fixingthe.net",
+#    identifier: '5f59d5b7a8a3465bc599eb83fc285ab7', #ENV["OP_CLIENT_ID"],
+#    secret: 'b40cd6fc9fdab9daa2f908e077b61a9548a3bb9763811344c8d86814f96e4de9', #ENV["OP_SECRET_KEY"],
+#    redirect_uri: "http://dev-oic.fixingthe.net/callback",
+#  },
+#}
+
 end
